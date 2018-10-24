@@ -1,12 +1,25 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Item {
-    ArrayList<Integer> itemList = new ArrayList<>();
-    HashMap<String,ArrayList> map = new HashMap<>();
+public class Item{
 
-    public void setItemList(){
-        map.put("potion", itemList);
-        //map.put("potion",itemList.set(0,250));
+    private String name;
+    private int buyValue;
+    private int sellValue;
+
+    public void buy(){
+
     }
+
+    public int getBuyValue() {
+        return buyValue;
+    }
+
+    public int getSellValue() {
+        return sellValue;
+    }
+    public String getName() {
+        return name;
+    }
+
 }
