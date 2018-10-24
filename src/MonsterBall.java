@@ -1,14 +1,28 @@
-import java.util.ArrayList;
 
-public class MonsterBall extends Item {
-    ArrayList<String> ballList = new ArrayList<>();
-
+public class MonsterBall extends Item{
+    private boolean haveMasterBall = false;
 
 
-    public ArrayList<String> getBallList() {
-        ballList.add("poke ball");
-        ballList.add("great ball");
-        ballList.add("ultra ball");
-        return ballList;
+    public MonsterBall(String name, int buyValue, int sellValue, int quantity) {
+        super(name, buyValue, sellValue, quantity);
     }
+
+    public void isBuyMasterBall() {
+        if (super.buyValue == 9999) {
+            haveMasterBall = true;
+            System.err.println("Cannot be brought");
+        }
+    }
+
+    public void isSellMasterBall() {
+        if (super.sellValue == 9999) {
+            haveMasterBall = true;
+            System.err.println("Cannot be sold");
+        }
+    }
+
+    public void decreaseBall() {
+        this.quantity--;
+    }
+
 }
