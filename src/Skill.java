@@ -22,6 +22,9 @@ public class Skill {
     public void setLevel(int level) {
         this.level = level;
     }
+//    public void increaseSkill(){
+//        this.level++;
+//    }
 
 
 }

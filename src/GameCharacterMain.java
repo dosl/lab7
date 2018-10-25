@@ -5,16 +5,16 @@ public class GameCharacterMain {
     public static void main(String[] args) {
         UsableItem potion = new UsableItem("potion", 300, 150, 20, 0, 0, 0);
         UsableItem superPotion = new UsableItem("super potion", 700, 350, 50, 0, 0, 0);
-        UsableItem xAttack = new UsableItem("X Attack",500,250,0,5,0,0);
-        UsableItem xDefense = new UsableItem("X Defense",500,250,0,0,5,0);
-        MonsterBall pokeball = new MonsterBall("Poke ball",200,100,0);
-        MonsterBall masterball = new MonsterBall("Master Ball",99999,99999,0);
-        ActiveSkill tackle = new ActiveSkill("Tackle",0);
-        ActiveSkill bodyslam = new ActiveSkill("Body slam",0);
-        Skill wet = new Skill("Wet",0);
+        UsableItem xAttack = new UsableItem("X Attack", 500, 250, 0, 5, 0, 0);
+        UsableItem xDefense = new UsableItem("X Defense", 500, 250, 0, 0, 5, 0);
+        MonsterBall pokeball = new MonsterBall("Poke ball", 200, 100, 0);
+        MonsterBall masterball = new MonsterBall("Master Ball", 99999, 99999, 0);
+        ActiveSkill tackle = new ActiveSkill("Tackle", 0);
+        ActiveSkill bodyslam = new ActiveSkill("Body slam", 0);
+        Skill wet = new Skill("Wet", 0);
 
         GameCharacter mudkip = new GameCharacter("Mudkip", 50, 70, 50, 15, 0, 1000);
-        GameCharacter charmander = new GameCharacter("Charmander", 39, 52, 43, 5, 0, 2000);
+        GameCharacter charmander = new GameCharacter("Charmander", 39, 52, 43, 5, 0, 10000);
 //        mudkip.buy(superPotion, 3);
 //        System.out.println("quantity super potion: " + superPotion.getQuantity());
 //        System.out.println("quantity potion: " + potion.getQuantity());
@@ -56,14 +56,42 @@ public class GameCharacterMain {
 
 //
         charmander.learnSkill(tackle);
-        System.out.println(tackle.getLevel());
+        System.out.println("charmander tackle: " + charmander.toString());
+        charmander.learnSkill(wet);
+        System.out.println("charmander wet: " + charmander.toString());
         mudkip.learnSkill(tackle);
-        System.out.println(tackle.getLevel());
+        System.out.println("mudkip tackle: " + mudkip.toString());
+        charmander.learnSkill(tackle);
+        System.out.println("charmander tackle: " + charmander.toString());
+//        charmander.learnSkill(tackle);
+//        System.out.println("charmander : " + charmander.toString());
+//
 
 //        charmander.buy(potion,2);
 //        System.out.println(charmander.getMoney());
 //        mudkip.buy(pokeball,2);
 //        System.out.println(mudkip.getMoney());
+
+        charmander.castSpell(tackle);
+
+        charmander.buy(pokeball,15);
+        System.out.println(charmander.catchBy(pokeball));
+        System.out.println(charmander.catchBy(pokeball));
+        System.out.println(charmander.catchBy(pokeball));
+        System.out.println(charmander.catchBy(pokeball));
+        System.out.println(charmander.catchBy(pokeball));
+        System.out.println(charmander.catchBy(pokeball));
+        System.out.println(charmander.catchBy(pokeball));
+        System.out.println(charmander.catchBy(pokeball));
+        System.out.println(charmander.catchBy(pokeball));
+        System.out.println(charmander.catchBy(pokeball));
+        System.out.println(charmander.catchBy(pokeball));
+        System.out.println(charmander.catchBy(pokeball));
+        System.out.println(charmander.catchBy(pokeball));
+        System.out.println(charmander.catchBy(pokeball));
+        System.out.println(charmander.getExp());
+        System.out.println(charmander.getLevel());
+
 
     }
 }

@@ -9,6 +9,7 @@ public class GameCharacter {
     private double money;
     private int level;
     private double exp;
+    private ArrayList<String> skillList = new ArrayList<>();
 
     public GameCharacter(String name, int hp, int damage, int defense, int level, double exp, double money) {
         this.name = name;
@@ -46,6 +47,10 @@ public class GameCharacter {
         this.hp = hp;
     }
 
+    public void setExp(double exp) {
+        this.exp = exp;
+    }
+
     public int getDamage() {
         return damage;
     }
@@ -74,12 +79,42 @@ public class GameCharacter {
             System.err.println("not enough item");
         }
     }
-    public void learnSkill(Skill skill){
-        skill.setLevel(skill.getLevel()+1);
+
+//    public void getSkillList() {
+//        for (int i = 0; i < skillList.size(); i++) {
+//            System.out.println(skillList.get(i).getName()+skillList.get(i).getLevel());
+//        }
+//    }
+
+    public void learnSkill(Skill skill) {
+        int count = 0;
+        if (skillList.contains(skill.getName())) {
+            for (int i = 0; i < skillList.size() - 1 && count < 1; i++) {
+                count++;
+                skill.setLevel(skill.getLevel() + 1);
+                skillList.set(i + 1, String.valueOf(skill.getLevel()));
+            }
+
+        } else {
+            skillList.add((skill.getName()));
+            skill.setLevel(skill.getLevel() + 1);
+            skillList.add(String.valueOf((skill.getLevel())));
+        }
     }
+
     public void castSpell(ActiveSkill activeSkill) {
-        System.out.println("use spell: " + activeSkill);
+        System.out.println("use spell: " + activeSkill.getName());
     }
+
+    @Override
+    public String toString() {
+        String result = "";
+        for (int i = 0; i < skillList.size(); i++) {
+            result += skillList.get(i) + " ";
+        }
+        return result;
+    }
+
 
     public void useItem(UsableItem usableItem) {
         if (usableItem.getQuantity() >= 1) {
@@ -93,11 +128,37 @@ public class GameCharacter {
     }
 
 
-    public void catchBy(MonsterBall monsterBall) {
+    public double getExp() {
+        return exp;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public String catchBy(MonsterBall monsterBall) {
+        String s = "failed";
         if (monsterBall.getQuantity() >= 1) {
             monsterBall.decreaseBall();
+            if (Math.random() < 0.5) {
+                s = "success";
+                this.setExp(getExp() + 10);
+                levelUp();
+            }
         } else {
             System.err.println("not enough item");
+        }
+        return s;
+    }
+
+    public void levelUp() {
+        if (getExp() >= 100) {
+            this.setLevel(getLevel() + 1);
+            this.setExp(0);
         }
     }
 
