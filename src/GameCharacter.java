@@ -34,7 +34,7 @@ public class GameCharacter {
             this.setMoney(this.getMoney() - item.getBuyValue() * quantity);
             receiveItems(item, quantity);
         } else {
-            System.err.println("not enough money");
+            throw new IllegalArgumentException("not enough money");
         }
 
     }
@@ -76,7 +76,7 @@ public class GameCharacter {
             this.setMoney(this.getMoney() + item.getSellValue() * quantity);
             item.decreaseQuantity(quantity);
         } else {
-            System.err.println("not enough item");
+            throw new IllegalArgumentException("not enough value");
         }
     }
 
@@ -91,13 +91,13 @@ public class GameCharacter {
         if (skillList.contains(skill.getName())) {
             for (int i = 0; i < skillList.size() - 1 && count < 1; i++) {
                 count++;
-                skill.setLevel(skill.getLevel() + 1);
+                skill.increaseSkillLevel();
                 skillList.set(i + 1, String.valueOf(skill.getLevel()));
             }
 
         } else {
             skillList.add((skill.getName()));
-            skill.setLevel(skill.getLevel() + 1);
+            skill.increaseSkillLevel();
             skillList.add(String.valueOf((skill.getLevel())));
         }
     }
@@ -123,7 +123,7 @@ public class GameCharacter {
             this.setDefense(getDefense() + usableItem.getIncreaseDef());
             usableItem.decreaseQuantity(1);
         } else {
-            System.err.println("not enough item");
+            throw new IllegalArgumentException("not enough value");
         }
     }
 
@@ -150,7 +150,7 @@ public class GameCharacter {
                 levelUp();
             }
         } else {
-            System.err.println("not enough item");
+            throw new IllegalArgumentException("not enough value");
         }
         return s;
     }
