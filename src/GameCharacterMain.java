@@ -90,7 +90,7 @@ public class GameCharacterMain {
         System.out.println(charmander.getLevel());
 
         mudkip.catchBy(masterball);
-       
+
 
     }
 }

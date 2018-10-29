@@ -33,7 +33,10 @@ public class GameCharacter {
         if (this.getMoney() > item.getBuyValue() * quantity) {
             this.setMoney(this.getMoney() - item.getBuyValue() * quantity);
             receiveItems(item, quantity);
-        } else {
+        } if (item.getBuyValue()==99999){
+            throw new IllegalArgumentException("can't buy");
+        }
+        else {
             throw new IllegalArgumentException("not enough money");
         }
 
@@ -75,7 +78,10 @@ public class GameCharacter {
         if (item.getQuantity() > quantity) {
             this.setMoney(this.getMoney() + item.getSellValue() * quantity);
             item.decreaseQuantity(quantity);
-        } else {
+        } if (item.getSellValue()==99999){
+            throw new IllegalArgumentException("can't sell");
+        }
+        else {
             throw new IllegalArgumentException("not enough value");
         }
     }
